@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 *.exe
+
+.idea/.idea.Breakout/.idea/
