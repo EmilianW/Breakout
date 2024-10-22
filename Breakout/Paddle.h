@@ -7,7 +7,7 @@
 class Paddle
 {
 public:
-    Paddle(sf::RenderWindow* window);
+    Paddle(sf::RenderWindow* window, b2WorldId worldId);
     ~Paddle();
 
     void moveLeft(float dt);
@@ -18,11 +18,11 @@ public:
     void setWidth(float coeff, float duration);
 
 private:
-
-
+    
     sf::RenderWindow* _window;
     sf::RectangleShape _sprite;
     float _width = PADDLE_WIDTH;
     bool _isAlive;
     float _timeInNewSize = 0.0f;
+    b2Polygon _rigidBody;
 };
