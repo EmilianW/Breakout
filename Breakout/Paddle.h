@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "CONSTANTS.h"
+#include <box2d/box2d.h>
 
 class Paddle
 {

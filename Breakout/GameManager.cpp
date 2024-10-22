@@ -2,7 +2,6 @@
 #include "Ball.h"
 #include "PowerupManager.h"
 #include <iostream>
-#include "b2_world.h"
 
 GameManager::GameManager(sf::RenderWindow* window)
     : _window(window), _paddle(nullptr), _ball(nullptr), _brickManager(nullptr), _powerupManager(nullptr),
@@ -116,8 +115,9 @@ UI* GameManager::getUI() const { return _ui; }
 
 void GameManager::initializeWorld()
 {
-    b2Vec2 gravity(0.0f, -9.8f);  // example gravity pointing downwards
-    _world = new b2World(gravity);
+    b2WorldDef worldDef = b2DefaultWorldDef();
+    worldDef.gravity = b2Vec2{ 0.0f, -10.0f };
+    _world = b2CreateWorld(&worldDef);
 }
 
 Paddle* GameManager::getPaddle() const { return _paddle; }
