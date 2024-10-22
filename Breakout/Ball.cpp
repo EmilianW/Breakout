@@ -1,13 +1,30 @@
 #include "Ball.h"
 #include "GameManager.h" // avoid cicular dependencies
 
-Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager)
+Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager, b2WorldId worldId)
     : _window(window), _velocity(velocity), _gameManager(gameManager),
     _timeWithPowerupEffect(0.f), _isFireBall(false), _isAlive(true), _direction({1,1})
 {
     _sprite.setRadius(RADIUS);
     _sprite.setFillColor(sf::Color::Cyan);
     _sprite.setPosition(0, 300);
+
+    b2BodyDef bodyDef = b2DefaultBodyDef();
+    bodyDef.type = b2_dynamicBody;
+    float x = 0;
+    float y = 300;
+    bodyDef.position = b2Vec2{x, y};
+    b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
+
+    b2Circle dynamicCircle;
+    dynamicCircle.center = b2Vec2{x, y};
+    dynamicCircle.radius = RADIUS;
+    
+    b2ShapeDef shapeDef = b2DefaultShapeDef();
+    shapeDef.density = 1.0f;
+    shapeDef.friction = 0.3f;
+
+    b2CreatePolygonShape(bodyId, &shapeDef, &dynamicCircle);
 }
 
 Ball::~Ball()
