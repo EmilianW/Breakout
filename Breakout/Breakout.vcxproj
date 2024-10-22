@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Box2DHelper.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="BrickManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Box2DHelper.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="BrickManager.h" />
     <ClInclude Include="CONSTANTS.h" />

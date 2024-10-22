@@ -1,5 +1,6 @@
 #include "Ball.h"
 #include "GameManager.h" // avoid cicular dependencies
+#include "Box2DHelper.h"
 
 Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager, b2WorldId worldId)
     : _window(window), _velocity(velocity), _gameManager(gameManager),
@@ -14,7 +15,7 @@ Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager, b
     float x = 0;
     float y = 300;
     bodyDef.position = b2Vec2{x, y};
-    b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
+    _bodyId = b2CreateBody(worldId, &bodyDef);
 
     b2Circle dynamicCircle;
     dynamicCircle.center = b2Vec2{x, y};
@@ -107,6 +108,10 @@ void Ball::update(float dt)
     {
         _direction.y *= -1; // Bounce vertically
     }
+
+    b2Vec2 vec = Box2DHelper::SFVectorToB2Vector(_sprite.getPosition()); 
+    
+    b2Body_SetTransform(_bodyId, vec, b2Rot_identity);
 }
 
 void Ball::render()

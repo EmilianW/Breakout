@@ -1,5 +1,6 @@
 #include "Paddle.h"
 #include <iostream>
+#include "Box2DHelper.h"
 
 Paddle::Paddle(sf::RenderWindow* window, b2WorldId worldId)
     : _window(window), _width(PADDLE_WIDTH), _timeInNewSize(0.0f), _isAlive(true)
@@ -13,14 +14,14 @@ Paddle::Paddle(sf::RenderWindow* window, b2WorldId worldId)
     float x = _sprite.getPosition().x + PADDLE_WIDTH / 2;
     float y = _sprite.getPosition().y + PADDLE_HEIGHT / 2;
     bodyDef.position = b2Vec2{x, y};
-    b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
+    _bodyId = b2CreateBody(worldId, &bodyDef);
 
     b2Polygon dynamicBox = b2MakeBox(PADDLE_WIDTH, PADDLE_HEIGHT);
     b2ShapeDef shapeDef = b2DefaultShapeDef();
     shapeDef.density = 1.0f;
     shapeDef.friction = 0.3f;
 
-    b2CreatePolygonShape(bodyId, &shapeDef, &dynamicBox);
+    b2CreatePolygonShape(_bodyId, &shapeDef, &dynamicBox);
 }
 
 Paddle::~Paddle()
@@ -57,6 +58,10 @@ void Paddle::update(float dt)
     {
         setWidth(1.0f, 0.0f); // Reset to default width after duration
     }
+
+    b2Vec2 vec = Box2DHelper::SFVectorToB2Vector(_sprite.getPosition()); 
+    
+    b2Body_SetTransform(_bodyId, vec, b2Rot_identity);
 }
 
 void Paddle::render()

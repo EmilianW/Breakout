@@ -27,6 +27,7 @@ private:
 
     GameManager* _gameManager;  // Reference to the GameManager
 
+    b2BodyId _bodyId;
 
     static constexpr float RADIUS = 10.0f;      
     static constexpr float VELOCITY = 350.0f;   // for reference.

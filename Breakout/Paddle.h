@@ -24,5 +24,5 @@ private:
     float _width = PADDLE_WIDTH;
     bool _isAlive;
     float _timeInNewSize = 0.0f;
-    b2Polygon _rigidBody;
+    b2BodyId _bodyId;
 };
