@@ -143,9 +143,9 @@
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="BrickManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="main.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/SFML/include</AdditionalIncludeDirectories>
-    </ClCompile>
+  <ClCompile Include="main.cpp">
+   <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)/SFML/include;$(ProjectDir)/box2d/include</AdditionalIncludeDirectories>
+  </ClCompile>
     <ClCompile Include="MessagingSystem.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="PowerupBase.cpp" />

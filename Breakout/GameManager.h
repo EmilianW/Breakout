@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <box2d/box2d.h>
 #include "CONSTANTS.h"
 #include "Paddle.h"
 #include "Ball.h"
@@ -7,7 +8,6 @@
 #include "PowerupManager.h"
 #include "MessagingSystem.h"
 #include "UI.h"
-#include <box2d/box2d.h>
 
 class GameManager {
 public:
