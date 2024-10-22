@@ -24,7 +24,7 @@ Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager, b
     shapeDef.density = 1.0f;
     shapeDef.friction = 0.3f;
 
-    b2CreatePolygonShape(bodyId, &shapeDef, &dynamicCircle);
+    b2CreateCircleShape(bodyId, &shapeDef, &dynamicCircle);
 }
 
 Ball::~Ball()

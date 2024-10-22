@@ -19,10 +19,10 @@ void GameManager::initialize()
 {
     initializeWorld();
     
-    _paddle = new Paddle(_window, _world);
+    _paddle = new Paddle(_window, _worldId);
     _brickManager = new BrickManager(_window, this);
     _messagingSystem = new MessagingSystem(_window);
-    _ball = new Ball(_window, 400.0f, this); 
+    _ball = new Ball(_window, 400.0f, this, _worldId); 
     _powerupManager = new PowerupManager(_window, _paddle, _ball);
     _ui = new UI(_window, _lives, this);
 
@@ -119,7 +119,7 @@ void GameManager::initializeWorld()
 {
     b2WorldDef worldDef = b2DefaultWorldDef();
     worldDef.gravity = b2Vec2{ 0.0f, -10.0f };
-    _world = b2CreateWorld(&worldDef);
+    _worldId = b2CreateWorld(&worldDef);
 }
 
 Paddle* GameManager::getPaddle() const { return _paddle; }
