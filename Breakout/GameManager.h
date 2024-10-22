@@ -7,8 +7,7 @@
 #include "PowerupManager.h"
 #include "MessagingSystem.h"
 #include "UI.h"
-
-
+#include "box2d.h"
 
 class GameManager {
 public:
@@ -19,6 +18,7 @@ public:
     void render();
     void levelComplete();
     void powerupEffect(POWERUPS pu, float t);
+    void initializeWorld();
 
     Paddle* getPaddle() const;
     BrickManager* getBrickManager() const;
@@ -38,7 +38,7 @@ private:
 
     sf::Font _font;
     sf::Text _masterText;
-
+    
     sf::RenderWindow* _window;
     Paddle* _paddle;
     Ball* _ball;
@@ -46,6 +46,8 @@ private:
     PowerupManager* _powerupManager;
     MessagingSystem* _messagingSystem;
     UI* _ui;
+
+    b2World* _world;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn
