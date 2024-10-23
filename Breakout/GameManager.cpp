@@ -28,6 +28,25 @@ void GameManager::initialize()
 
     // Create bricks
     _brickManager->createBricks(5, 10, 80.0f, 30.0f, 5.0f, _worldId);
+
+    // Create walls
+    b2BodyDef bodyDef = b2DefaultBodyDef();
+    bodyDef.position = (b2Vec2){-10.0f, 0.0f};
+    b2Polygon vertBox = b2MakeBox(10.0f, 100.0f);
+    b2ShapeDef shapeDef = b2DefaultShapeDef();
+
+    // Create left wall
+    _leftWallBody = b2CreateBody(_worldId, &bodyDef);
+    b2CreatePolygonShape(_leftWallBody, &shapeDef, &vertBox);
+    
+    // Create right wall
+    _rightWallBody = b2CreateBody(_worldId, &bodyDef);
+    b2CreatePolygonShape(_rightWallBody, &shapeDef, &vertBox);
+    
+    // Create ceiling
+    b2Polygon horBox = b2MakeBox(100.0f, 10.0f);
+    _ceilingBody = b2CreateBody(_worldId, &bodyDef);
+    b2CreatePolygonShape(_ceilingBody, &shapeDef, &horBox);
     
 }
 

@@ -48,6 +48,9 @@ private:
     UI* _ui;
 
     b2WorldId _worldId;
+    b2BodyId _leftWallBody;
+    b2BodyId _rightWallBody;
+    b2BodyId _ceilingBody;
 
     static constexpr float PAUSE_TIME_BUFFER = 0.5f;
     static constexpr float POWERUP_FREQUENCY = 7.5f;    // time between minimum powerup spawn

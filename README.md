@@ -39,4 +39,5 @@ fire ball (green)
 22/10 14:00 - 14:08 Set up a rigid body for the ball
 22/10 14:08 - 14:50 Added a helper class for converting vectors. Updating rigid bodies on every frame
 23/10 10:04 - 10:16 Removed simple ball physics
-23/10 10:16 - 10:22 Set up a rigid body for the bricks
+23/10 10:16 - 10:23 Set up a rigid body for the bricks
+23/10 10:23 - 10:34 Set up rigid bodies for the left and right walls and the ceiling
