@@ -38,4 +38,4 @@ fire ball (green)
 22/10 13:44 - 14:00 Set up a rigid body for the paddle
 22/10 14:00 - 14:08 Set up a rigid body for the ball
 22/10 14:08 - 14:50 Added a helper class for converting vectors. Updating rigid bodies on every frame
-23/10 10:04 - 
+23/10 10:04 - 10:06 Removed simple ball physics
