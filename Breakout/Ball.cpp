@@ -25,7 +25,7 @@ Ball::Ball(sf::RenderWindow* window, float velocity, GameManager* gameManager, b
     shapeDef.density = 1.0f;
     shapeDef.friction = 0.3f;
 
-    b2CreateCircleShape(bodyId, &shapeDef, &dynamicCircle);
+    b2CreateCircleShape(_bodyId, &shapeDef, &dynamicCircle);
 }
 
 Ball::~Ball()
@@ -65,18 +65,6 @@ void Ball::update(float dt)
     sf::Vector2f position = _sprite.getPosition();
     sf::Vector2u windowDimensions = _window->getSize();
 
-    // bounce on walls
-    if ((position.x >= windowDimensions.x - 2 * RADIUS && _direction.x > 0) || (position.x <= 0 && _direction.x < 0))
-    {
-        _direction.x *= -1;
-    }
-
-    // bounce on ceiling
-    if (position.y <= 0 && _direction.y < 0)
-    {
-        _direction.y *= -1;
-    }
-
     // lose life bounce
     if (position.y > windowDimensions.y)
     {
@@ -85,29 +73,9 @@ void Ball::update(float dt)
         _gameManager->loseLife();
     }
 
-    // collision with paddle
-    if (_sprite.getGlobalBounds().intersects(_gameManager->getPaddle()->getBounds()))
-    {
-        _direction.y *= -1; // Bounce vertically
-
-        float paddlePositionProportion = (_sprite.getPosition().x - _gameManager->getPaddle()->getBounds().left) / _gameManager->getPaddle()->getBounds().width;
-        _direction.x = paddlePositionProportion * 2.0f - 1.0f;
-
-        // Adjust position to avoid getting stuck inside the paddle
-        _sprite.setPosition(_sprite.getPosition().x, _gameManager->getPaddle()->getBounds().top - 2 * RADIUS);
-    }
-
     // collision with bricks
     int collisionResponse = _gameManager->getBrickManager()->checkCollision(_sprite, _direction);
     if (_isFireBall) return; // no collisisons when in fireBall mode.
-    if (collisionResponse == 1)
-    {
-        _direction.x *= -1; // Bounce horizontally
-    }
-    else if (collisionResponse == 2)
-    {
-        _direction.y *= -1; // Bounce vertically
-    }
 
     b2Vec2 vec = Box2DHelper::SFVectorToB2Vector(_sprite.getPosition()); 
     

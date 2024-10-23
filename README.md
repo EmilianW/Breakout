@@ -32,4 +32,10 @@ fire ball (green)
 * Implement commentary with calls to an LLM such as LLama
 
 # Time Details and Changelist
-<Add information to this section about the time you've taken for this task along with a professional changelist.>
+18/10 15:00 - 15:19 Fixed compile issue
+22/10 11:00 - 12:00 Created a Box2D static library
+22/10 12:00 - 13:44 Set up the project for use with Box2D
+22/10 13:44 - 14:00 Set up a rigid body for the paddle
+22/10 14:00 - 14:08 Set up a rigid body for the ball
+22/10 14:08 - 14:50 Added a helper class for converting vectors. Updating rigid bodies on every frame
+23/10 10:04 - 
